@@ -1,0 +1,18 @@
+from pyperclip import copy
+from transliterate import translit
+
+while True:
+    FIO = input("Вставь ФИО юзера: ")
+    if len(FIO.split()) > 1:
+        FIO_list = translit(FIO, 'ru', reversed=True).split()
+        FIO_str = str(FIO_list[0])
+        for s in FIO_list[1:]:
+            FIO_str += s[0]
+        res = FIO_str.replace("'", "")
+        res = res.replace("J", "Y")
+        res = res.replace("j", "y")
+        copy(res)
+        print(f'''Результат: {res}\nСкопировано в буфер обмена!\n''')
+    else:
+        print('НЕВЕРНЫЕ ФИО!!!\n')
+        continue
